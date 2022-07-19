@@ -1,8 +1,8 @@
 const express=require("express");  //importing express in our server.js file
 const userController=require("../server/user/routes/user");
 const mongoose=require("mongoose");
-
-const app=express() //creating our app to use express
+const multer=require("multer")();
+const app=express();
 
 //creating our server at 3001 with error printing if it have after listen passing call back to see 
 //what happen it created or not
@@ -19,7 +19,7 @@ app.listen(3001, (err)=>{
 //it have two callback fxn which are data and err funciton 
 //on succesfully connected it show successfully connected to database in terminal other wise show err
 //we define collection inside modals
-mongoose.connect("mongodb://localhost/Ecommerce", (data)=>{
+mongoose.connect("mongodb://127.0.0.1:27017/ecommerce", (data)=>{
     console.log("Successfully connected to database")
 }, (err)=>{
     console.log(err)
@@ -30,6 +30,7 @@ mongoose.connect("mongodb://localhost/Ecommerce", (data)=>{
 //data middleware or bodyparser middleware
 app.use(express.json()); //cover json data
 app.use(express.urlencoded({extended: false})); //cover form data and encoded form data both
+app.use(multer.array()); //to readform data or multipart data we need multer
 
 //now our sever started but we dont get anything on our server so need to add our base routes
 //creating base route after that you get message on your base routes
