@@ -1,5 +1,8 @@
 const express=require("express");  //importing express in our server.js file
 const userController=require("../server/user/routes/user");
+const orderController=require("../server/user/routes/orders");
+const cartController=require("../server/user/routes/cart");
+const itemController=require("../server/user/routes/item")
 const mongoose=require("mongoose");
 const multer=require("multer")();
 const app=express();
@@ -40,4 +43,7 @@ app.get("/", (req,res)=>{
 
 //middleware when something like routes is triggered first thing is middlleware executed
 //its like passing some configuration to your routes here
-app.use("/user", userController)
+app.use("/user", userController);
+app.use("/order", orderController);
+app.use("/cart", cartController);
+app.use("/item", itemController);
