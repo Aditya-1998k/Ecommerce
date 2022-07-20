@@ -6,6 +6,7 @@ const itemController=require("../server/user/routes/item")
 const mongoose=require("mongoose");
 const multer=require("multer")();
 const app=express();
+const cors=require("cors")
 
 //creating our server at 3001 with error printing if it have after listen passing call back to see 
 //what happen it created or not
@@ -34,6 +35,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/ecommerce", (data)=>{
 app.use(express.json()); //cover json data
 app.use(express.urlencoded({extended: false})); //cover form data and encoded form data both
 app.use(multer.array()); //to readform data or multipart data we need multer
+app.use(cors()); //it enables cors everytime it requriested
 
 //now our sever started but we dont get anything on our server so need to add our base routes
 //creating base route after that you get message on your base routes

@@ -33,3 +33,7 @@ Now we need to create hashing so that we protect our password before storing int
 
 once done with hash creation we need to create authorization token so that we can avoid authorization at each step 
 for that we require jsonwebtoken
+
+create order model and routes
+create cart model and routes
+
