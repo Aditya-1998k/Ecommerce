@@ -16,6 +16,7 @@ const Signup=()=>{
             url:"http://localhost:3001/user/signup",  //url is where we want our data
             method:"POST", //this can be post delete get and put
             headers:{
+                //here we can pass authentication token to verify or other data
             },
             data:signupState //data is same like we passing data in postman body
         }).then((res)=>{
@@ -26,9 +27,9 @@ const Signup=()=>{
     }   
     const handleInputChange=(e, id)=>{
         if(id==="phone_number"){
-            e.target.value=parseInt(e.target.value)
+            e.target.value=parseInt(e.target.value) //we need to pass data in int format otherwise give error for pphone number
         }
-        setSignupState({...signupState, [id]: e.target.value})
+        setSignupState({...signupState, [id]: e.target.value}) //using handle input to store each value3 into signupstate
     }                   
             return(
                 <>

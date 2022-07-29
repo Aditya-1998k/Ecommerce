@@ -6,7 +6,6 @@ const express=require("express");
 const jwt=require("jsonwebtoken");
 //crypto is part of node which genrate secret key for us
 const crypto=require("crypto");
-const secretKey=crypto.randomBytes(64).toString("hex");
 const bcrypt=require("bcryptjs")
 
 const app=express() //creating our app to use express
@@ -40,7 +39,7 @@ router.post("/login", (req, res)=>{
         if(userData.length){
             bcrypt.compare(req.body.password, userData[0].password).then((val)=>{
                 if(val){
-                    const authToken=jwt.sign(userData[0].username, secretKey);
+                    const authToken=jwt.sign(userData[0].username, process.env.SECRET_KEY);
                     res.status(200).send(authToken)
                 }else{
                     res.status(400).send("Invalid Password");

@@ -37,3 +37,9 @@ for that we require jsonwebtoken
 create order model and routes
 create cart model and routes
 
+//secret key is in vault at application level so it is same for all user and we are using for study so use .env file
+//in industry they use vault to safe our application
+//in .env file we name variable name in capital letter and its value without any quote or commas
+
+/jwt has method verify which takes two argumnet first is token and other secret key
+//token generated contains three things headers, payload ans secretkey if you change any thing it says user not authorized

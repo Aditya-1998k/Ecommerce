@@ -5,7 +5,7 @@ const itemSchema=new mongoose.Schema({
     item_id:String,
     item_image:String,
     item_category:String,
-    actura_price:Number,
+    actual_price:Number,
     discounted_price:Number
 });
 

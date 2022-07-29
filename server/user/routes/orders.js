@@ -1,6 +1,18 @@
 const express=require("express");
 const orderModal=require("../modal/order-modal")
 const router=express.Router();
+const jwt= require("jsonwebtoken");
+
+router.get("/", (req, res)=>{
+   // console.log(req.headers.authorization, process.env.SECTRET_KEY);
+    try{
+        const user=jwt.verify(req.headers.authorization, process.env.SECRET_KEY)
+        res.status(200).send(user)
+    }catch(err){
+        res.status(400).send("user not authorized")
+    }
+})
+
 //post method for placeing our order
 router.post("/add", (req,res)=>{
     orderModal.create({username:req.body.username, order_id:req.body.order_id, order_type:req.body.order_type, item_id:req.body.item_id, order_status:req.body.order_status}).then(()=>{
