@@ -1,10 +1,14 @@
 import React from 'react';
 import axios from "axios";
+
 import { useEffect , useState} from 'react';
+
 
 const Item =()=> {
     
     const [items, setitem]=useState([]);
+    const [cartData, setCartData]=useState({itemid:""})
+   
      useEffect(()=>{
         axios({
             method:"GET",
@@ -16,13 +20,30 @@ const Item =()=> {
             console.log(err)
         })
      },[])   
-
+      const authToken=localStorage.getItem("authorization")
+    //  console.log(authToken)
+     const handleCart=(item)=>{
+        
+        setCartData({...cartData,itemid: item.item_id});
+        console.log(cartData)
+        
+        axios({
+            method:"POST",
+            url:"http://localhost:3001/cart/add",
+            headers:{
+                authorization:authToken
+            },
+            data:cartData
+        }).then((res)=>{
+            console.log(res)
+        }).catch((err)=>{
+            console.log(err)
+        })
+     }
      const handleBuy=()=>{
 
      }
-     const handleCart=(data)=>{
-        console.log(data)
-     }
+     
 return(
     <>
     <div className='container'>

@@ -5,6 +5,7 @@ import Logout from "./components/logout/logout";
 import Order from "./components/orders/order";
 import Protected from "./components/protectedRoutes/protected";
 import Item from "./components/item/item";
+import Cart from "./components/cart/cart";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
             <Route path="/logout" element={<Logout/>}/>
             <Route path="/item" element={<Item/>}/>
             <Route path="/order" element={<Protected><Order/></Protected>}/>
+            <Route path="/cart" element={<Cart/>}/>
         </Routes>
       </BrowserRouter>
     </>

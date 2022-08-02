@@ -24,6 +24,15 @@ app.listen(3001, (err)=>{
     }
 });
 
+app.use(express.json()); //cover json data
+app.use(express.urlencoded({extended: false})); //cover form data and encoded form data both
+app.use(multer.array()); //to readform data or multipart data we need multer
+app.use(cors()); //it enables cors everytime it requriested and to avoid cors or preflight error
+                //from front end something coming then our back end will not be able to figure out 
+                //what is coming that's why we need cors for cross orgin resource sharing
+
+//now our sever started but we dont get anything on our server so need to add our base routes
+//creating base route after that you get message on your base routes
 
 //connecting to your database and creating your database name here our database name is Ecommerce
 //it have two callback fxn which are data and err funciton 
@@ -38,15 +47,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/ecommerce", (data)=>{
 //data we get from front is either json data or form data bydefault express dont directly support these things
 // so we need use data middle ware to read form data and json data 
 //data middleware or bodyparser middleware
-app.use(express.json()); //cover json data
-app.use(express.urlencoded({extended: false})); //cover form data and encoded form data both
-app.use(multer.array()); //to readform data or multipart data we need multer
-app.use(cors()); //it enables cors everytime it requriested and to avoid cors or preflight error
-                //from front end something coming then our back end will not be able to figure out 
-                //what is coming that's why we need cors for cross orgin resource sharing
 
-//now our sever started but we dont get anything on our server so need to add our base routes
-//creating base route after that you get message on your base routes
 
 
 app.get("/", (req,res)=>{
